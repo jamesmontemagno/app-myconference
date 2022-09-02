@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MyConference.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:MyConference.Pages"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <Tab Title="Schedule" Icon="tab_schedule.png">
+            <ShellContent
+                Title="Day 1"
+                ContentTemplate="{DataTemplate pages:ScheduleDay1Page}"
+                Route="ScheduleDay1" />
+            <ShellContent
+                Title="Day 2"
+                ContentTemplate="{DataTemplate pages:ScheduleDay2Page}"
+                Route="ScheduleDay2" />
+        </Tab>
+        <Tab Title="My Agenda" Icon="tab_agenda.png">
+            <ShellContent
+                Title="Day 1"
+                ContentTemplate="{DataTemplate pages:AgendaPage}"
+                Route="MyAgendaDay1" />
+
+            <ShellContent
+                Title="Day 2"
+                ContentTemplate="{DataTemplate  pages:AgendaPage}"
+                Route="MyAgendaDay2" />
+        </Tab>
+        <Tab Title="Sponsors" Icon="tab_sponsors.png">
+            <ShellContent
+                Title="Sponsors"
+                ContentTemplate="{DataTemplate pages:SponsorsPage}"
+                Route="Sponsors" />
+        </Tab>
+    </TabBar>
+
+</Shell>

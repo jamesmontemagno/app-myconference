@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyConference.Pages.SchedulePage"
+             xmlns:viewmodel="clr-namespace:MyConference.ViewModels"
+             xmlns:model="clr-namespace:MyConference.Models"
+             x:DataType="viewmodel:ScheduleViewModel"
+             Title="Schedule">
+    <ListView ItemsSource="{Binding Schedule}"
+              HasUnevenRows="True"
+              IsGroupingEnabled="True"
+              SeparatorVisibility="None"
+              GroupDisplayBinding="{Binding Key}">
+        <ListView.GroupHeaderTemplate>
+            <DataTemplate x:DataType="{x:Null}">
+                <ViewCell>
+                    <Grid Padding="20,10,8,8">
+                        <Label Text="{Binding Key}"
+                               TextColor="{StaticResource Primary}"
+                               FontSize="18" FontAttributes="Bold"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.GroupHeaderTemplate>
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:Session">
+                <ViewCell>
+                    <Grid Padding="10">
+                        <Border Padding="14" Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}"
+                                StrokeShape="RoundRectangle 10"
+                                StrokeThickness="2"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="{Binding Title}" FontSize="24"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Room, StringFormat='in {0}'}"/>
+                                <Label Text="{Binding Speaker.Name}"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>
