@@ -7,33 +7,37 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-        <Tab Title="Schedule" Icon="tab_schedule.png">
+        <Tab AutomationId="Schedule" Title="Schedule" Icon="tab_schedule.png">
             <ShellContent
+                AutomationId="ScheduleDay1"
                 Title="Day 1"
                 ContentTemplate="{DataTemplate pages:ScheduleDay1Page}"
-                Route="ScheduleDay1" />
+                Route="ScheduleDay1" 
+                />
             <ShellContent
+                AutomationId="ScheduleDay2"
                 Title="Day 2"
                 ContentTemplate="{DataTemplate pages:ScheduleDay2Page}"
                 Route="ScheduleDay2" />
         </Tab>
-        <Tab Title="My Agenda" Icon="tab_agenda.png">
+        <Tab AutomationId="MyAgenda" Title="My Agenda" Icon="tab_agenda.png">
             <ShellContent
+                AutomationId="MyAgendaDay1"
                 Title="Day 1"
-                ContentTemplate="{DataTemplate pages:AgendaPage}"
+                ContentTemplate="{DataTemplate pages:AgendaDay1Page}"
                 Route="MyAgendaDay1" />
 
             <ShellContent
+                AutomationId="MyAgendaDay2"
                 Title="Day 2"
-                ContentTemplate="{DataTemplate  pages:AgendaPage}"
+                ContentTemplate="{DataTemplate pages:AgendaDay2Page}"
                 Route="MyAgendaDay2" />
         </Tab>
-        <Tab Title="Sponsors" Icon="tab_sponsors.png">
+        <Tab AutomationId="Sponsors" Title="Sponsors" Icon="tab_sponsors.png">
             <ShellContent
                 Title="Sponsors"
                 ContentTemplate="{DataTemplate pages:SponsorsPage}"
                 Route="Sponsors" />
         </Tab>
     </TabBar>
-
 </Shell>

@@ -6,7 +6,8 @@
              xmlns:model="clr-namespace:MyConference.Models"
              x:DataType="viewmodel:ScheduleViewModel"
              Title="Schedule">
-    <ListView ItemsSource="{Binding Schedule}"
+    <ListView AutomationId="SchedulerAgendaList"
+              ItemsSource="{Binding Schedule}"
               HasUnevenRows="True"
               IsGroupingEnabled="True"
               SeparatorVisibility="None"
@@ -15,7 +16,8 @@
             <DataTemplate x:DataType="{x:Null}">
                 <ViewCell>
                     <Grid Padding="20,10,8,8">
-                        <Label Text="{Binding Key}"
+                        <Label x:Name="SchedulerSessionTime"
+                               Text="{Binding Key}"
                                TextColor="{StaticResource Primary}"
                                FontSize="18" FontAttributes="Bold"/>
                     </Grid>

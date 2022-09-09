@@ -5,6 +5,7 @@
              Title="Agenda">
     <VerticalStackLayout>
         <Label 
+            AutomationId="MyAgendaList"
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />

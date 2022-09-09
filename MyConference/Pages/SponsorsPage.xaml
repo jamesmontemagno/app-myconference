@@ -5,6 +5,7 @@
              Title="Sponsors">
     <VerticalStackLayout>
         <Label 
+            AutomationId="SponsorsList"
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
