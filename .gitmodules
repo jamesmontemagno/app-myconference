@@ -1,0 +1,4 @@
+[submodule "automationtestware"]
+	path = automationtestware
+	url = https://github.com/ERNI-Academy/net6-automation-testware
+	branch = main
