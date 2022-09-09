@@ -1,0 +1,104 @@
+{
+  "Configurations": [
+    {
+      "Tag": "Appiumdriver",
+      "Capabilities": [
+        {
+          "Name": "AndroidDriver",
+          "AppiumUrl": "http://127.0.0.1:4725/wd/hub",
+          "AppPath": "d:\\projects\\app-myconference\\MyConference\\bin\\Debug\\net6.0-android\\com.companyname.myconference-Signed.apk",
+          "CommandTimeOutInMinutes": 5,
+          "DeviceName": "pixel_5_-_api_30",
+          "PlatformName": "Android",
+          "Options": [
+            {
+              "Name": "appPackage",
+              "Value": "com.companyname.myconference"
+            },
+            {
+              "Name": "fullReset",
+              "Value": false
+            },
+            {
+              "Name": "noReset",
+              "Value": true
+            },
+            {
+              "Name": "unicodeKeyboard",
+              "Value": true
+            },
+            {
+              "Name": "resetKeyboard",
+              "Value": true
+            },
+            {
+              "Name": "autoAcceptAlerts",
+              "Value": true
+            },
+            {
+              "Name": "autoGrantPermissions",
+              "Value": true
+            },
+            {
+              "Name": "newCommandTimeout",
+              "Value": 500
+            }
+          ]
+        },
+        {
+          "Name": "IOSDriver",
+          "AppiumUrl": "http://127.0.0.1:4723/wd/hub",
+          "AppPath": "<Path to Zip file generated for iOS by VS>",
+          "PlatformName": "iOS",
+          "DeviceName": "iPhone 8",
+          "PlatformVersion": "15.2",
+          "CommandTimeOutInMinutes": 5,
+          "Options": [
+            {
+              "Name": "udid",
+              "Value": "69941576-255B-4E69-8AD9-8BA0602D5E9F"
+            },
+            {
+              "Name": "showXcodeLog",
+              "Value": true
+            },
+            {
+              "Name": "showIOSLog",
+              "Value": true
+            },
+            {
+              "Name": "wdaStartupRetries",
+              "Value": 4
+            },
+            {
+              "Name": "iosInstallPause",
+              "Value": 8000
+            },
+            {
+              "Name": "wdaStartupRetryInterval",
+              "Value": 20000
+            },
+            {
+              "Name": "useNewWDA",
+              "Value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Tag": "WinAppDriver",
+      "Capabilities": [
+        {
+          "Name": "WinAppDriver",
+          "ApplicationPath": "D:\\Projects\\app-myconference\\MyConference\\bin\\Debug\\net6.0-windows10.0.19041.0\\win10-x64\\MyConference.exe",
+          "ApplicationClassName": "WinUIDesktopWin32WindowClass",
+          "ApplicationName": "MyConference",
+          "WinAppDriverUrl": "http://127.0.0.1:4725/wd/hub",
+          "CommandTimeOutInMinutes": 5
+        }
+      ]
+    }
+  ],
+  "TestResultPath": "D:\\Projects\\app-myconference\\test-results\\"
+}

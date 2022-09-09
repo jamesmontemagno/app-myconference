@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Support\**" />
+		<EmbeddedResource Remove="Support\**" />
+		<None Remove="Support\**" />
+		<SpecFlowFeatureFiles Remove="Support\**" />
+		<SpecFlowObsoleteCodeBehindFiles Remove="Support\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
+		<PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+		<PackageReference Include="coverlet.collector" Version="3.1.2" />
+		<PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
+		<PackageReference Include="SpecFlow.MsTest" Version="3.9.40" />
+		<PackageReference Include="FluentAssertions" Version="6.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\automationtestware\src\Core\TestWare.Core\TestWare.Core.csproj" />
+	  <ProjectReference Include="..\automationtestware\src\Core\TestWare.TestReport\TestWare.ExtentReport.csproj" />
+	  <ProjectReference Include="..\automationtestware\src\Engines\TestWare.Engines.Appium\TestWare.Engines.Appium.csproj" />
+	  <ProjectReference Include="..\automationtestware\src\Engines\TestWare.Engines.Selenium\TestWare.Engines.Selenium.csproj" />
+	  <ProjectReference Include="..\automationtestware\src\Engines\TestWare.Engines.WinAppDriver\TestWare.Engines.Appium.WinAppDriver.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="TestConfiguration.Mobile.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>
