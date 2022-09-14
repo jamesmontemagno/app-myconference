@@ -2,60 +2,45 @@
 using MyConference.Tests.UI.POM.SchedulePage.Interfaces;
 using OpenQA.Selenium.Appium.MultiTouch;
 using System.Diagnostics;
+using TestWare.Engines.Selenium.Pages;
 
 namespace MyConference.Tests.UI.POM.SchedulePage;
 
 internal class AndroidSchedulePage : MobilePage, IAndroidSchedulePage
 {
+    private SchedulePage _commonLogic;
+
     [FindsBy(How = How.Id, Using = "com.companyname.myconference:id/SchedulerAgendaList")]
     private IWebElement SchedulerAgendaList { get; set; }
 
- 
-    public AndroidSchedulePage(IAppiumDriver driver) : base(driver)
+
+    public AndroidSchedulePage(IAppiumDriver driver): base(driver)
     {
+        _commonLogic = new SchedulePage(this);
     }
 
     public IEnumerable<string> GetScheduleItems()
     {
-        var children = SchedulerAgendaList.FindElements(By.ClassName("android.widget.TextView")).Cast<WebElement>();
-        var texts = children.Select(x => x.Text).ToList();
-        var firstItem = children.FirstOrDefault();
-        var lastItem = children.LastOrDefault();
-
+        var textsFound = new List<string>();
         while (true)
         {
-            try
-            {
-                ScrollFromLoactionAtoLocationB(lastItem.Location, firstItem.Location);
-                var findItems = SchedulerAgendaList.FindElements(By.ClassName("android.widget.TextView")).Cast<WebElement>().ToList();
-                var itemsToAdd = findItems.Select(x => x.Text).Except(texts);
+            var elementsOnView = SchedulerAgendaList.FindElements(By.ClassName("android.widget.TextView"));
+            var newElementTexts = elementsOnView.Select(x => x.Text).Except(textsFound);
 
-                if (itemsToAdd.Count() == 0)
-                {
-                    break;
-                }
-
-                firstItem = findItems.FirstOrDefault();
-                lastItem = findItems.LastOrDefault();
-                texts.AddRange(itemsToAdd);
-            }
-            catch (Exception e)
+            if (!newElementTexts.Any())
             {
+                break;
             }
+
+            textsFound.AddRange(newElementTexts);
+            var firstItem = elementsOnView.FirstOrDefault();
+            var lastItem = elementsOnView.LastOrDefault();
+            ScrollFromLoactionAtoLocationB(lastItem.Location, firstItem.Location);
+
+
         }
 
-        var time = new TimeOnly();
-        var result = new List<string>();
-        foreach (var child in texts.Where(x => TimeOnly.TryParse(x, out time)))
-        {
-            Debug.WriteLine(child);
-
-            if (TimeOnly.TryParse(child, out time))
-            {
-                result.Add(child);
-            }
-        }
-
-        return result;
+        var times_found = _commonLogic.ParseStringsToTime(textsFound);
+        return times_found;
     }
 }

@@ -8,55 +8,40 @@ namespace MyConference.Tests.UI.POM.AppShell;
 
 internal class AndroidAppShellPage : MobilePage, IAndroidAppShellPage
 {
+    private AppShellPage _commonLogic;
+
     [FindsBy(How = How.AccessibilityId, Using = "Schedule")]
-    private IWebElement ScheduleTab { get; set; }
+    public IWebElement ScheduleTab { get; set; }
     [FindsBy(How = How.AccessibilityId, Using = "ScheduleDay1")]
-    private IWebElement ScheduleDay1Tab { get; set; }
+    public IWebElement ScheduleDay1Tab { get; set; }
     [FindsBy(How = How.AccessibilityId, Using = "ScheduleDay2")]
-    private IWebElement ScheduleDay2Tab { get; set; }
+    public IWebElement ScheduleDay2Tab { get; set; }
     [FindsBy(How = How.AccessibilityId, Using = "My Agenda")]
-    private IWebElement MyAgendaTab { get; set; }
+    public IWebElement MyAgendaTab { get; set; }
     [FindsBy(How = How.AccessibilityId, Using = "MyAgendaDay1")]
-    private IWebElement MyAgendaDay1Tab { get; set; }
+    public IWebElement MyAgendaDay1Tab { get; set; }
     [FindsBy(How = How.AccessibilityId, Using = "MyAgendaDay2")]
-    private IWebElement MyAgendaDay2Tab { get; set; }
+    public IWebElement MyAgendaDay2Tab { get; set; }
 
     [FindsBy(How = How.AccessibilityId, Using = "Sponsors")]
-    private IWebElement SponsorsTab { get; set; }
-
+    public IWebElement SponsorsTab { get; set; }
 
     public AndroidAppShellPage(IAppiumDriver driver) : base(driver)
     {
+        _commonLogic = new AppShellPage(this);
     }
-
     public void ClickSchedulerTab(int day)
     {
-        ScheduleTab.Click();
-        if (day == 1)
-        {
-            ScheduleDay1Tab.Click();
-        }
-        else
-        {
-            ScheduleDay2Tab.Click();
-        }
+        _commonLogic.ClickSchedulerTab(day);
     }
 
     public void ClickMyAgendaTab(int day)
     {
-        MyAgendaTab.Click();
-        if (day == 1)
-        {
-            MyAgendaDay1Tab.Click();
-        }
-        else
-        {
-            MyAgendaDay2Tab.Click();
-        }
+        _commonLogic.ClickMyAgendaTab(day);
     }
 
     public void ClickSponsorTab()
     {
-        SponsorsTab.Click();
+        _commonLogic.ClickSponsorTab();
     }
 }

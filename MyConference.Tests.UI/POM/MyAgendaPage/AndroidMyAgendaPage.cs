@@ -3,17 +3,18 @@
 namespace MyConference.Tests.UI.POM.MyAgendaPage;
 internal class AndroidMyAgendaPage : MobilePage, IAndroidMyAgendaPage
 {
-    //com.companyname.myconference:id/WelcomeToNetMaui
+    private MyAgendaPage _commonLogic;
 
     [FindsBy(How = How.Id, Using = "com.companyname.myconference:id/MyAgendaList")]
-    private IWebElement MyAgendaList { get; set; }
+    public IWebElement MyAgendaList { get; set; }
 
-    public AndroidMyAgendaPage(IAppiumDriver driver) : base(driver)
+    public AndroidMyAgendaPage(IAppiumDriver driver): base(driver)
     {
+        _commonLogic = new(this);
     }
 
     public string GetScheduleItems()
     {
-        return MyAgendaList?.Text;
+        return _commonLogic.GetScheduleItems();
     }
 }

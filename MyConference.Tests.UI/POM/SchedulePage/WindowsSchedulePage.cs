@@ -1,35 +1,40 @@
 ﻿using MyConference.Tests.UI.POM.SchedulePage.Interfaces;
-using System.Diagnostics;
 using TestWare.Engines.Appium.WinAppDriver.Pages;
 
 namespace MyConference.Tests.UI.POM.SchedulePage;
 
 internal class WindowsSchedulePage : WinAppDriverPage, IWindowsSchedulePage
 {
+    private SchedulePage _commonLogic;
+
     [FindsBy(How = How.AccessibilityId, Using = "SchedulerAgendaList")]
     private IWebElement SchedulerAgendaList { get; set; }
 
-    public WindowsSchedulePage(IWindowsDriver driver) : base(driver)
+    public WindowsSchedulePage(IWindowsDriver driver): base(driver)
     {
+        _commonLogic = new SchedulePage(this);
     }
 
     public IEnumerable<string> GetScheduleItems()
     {
-        var children = SchedulerAgendaList.FindElements(By.XPath("//*")).Cast<WebElement>();
-        var texts = children.Select(x => x.Text).ToList();
-
-        var time = new TimeOnly();
-        var result = new List<string>();
-        foreach (var child in texts.Where(x => TimeOnly.TryParse(x, out time)))
+        var textsFound = new List<string>();
+        while (true)
         {
-            Debug.WriteLine(child);
+            var elementsOnView = SchedulerAgendaList.FindElements(By.XPath("//*"));
+            var newElementTexts = elementsOnView.Select(x => x.Text).Except(textsFound);
 
-            if (TimeOnly.TryParse(child, out time))
+            if (!newElementTexts.Any())
             {
-                result.Add(child);
+                break;
             }
-        }
 
-        return result;
+            textsFound.AddRange(newElementTexts);
+            var lastItem = elementsOnView.LastOrDefault();
+            lastItem.SendKeys(Keys.PageDown);
+
+
+        }
+        var times_found = _commonLogic.ParseStringsToTime(textsFound);
+        return times_found;
     }
 }

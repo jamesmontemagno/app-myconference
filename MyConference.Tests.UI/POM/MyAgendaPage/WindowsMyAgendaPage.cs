@@ -5,15 +5,18 @@ namespace MyConference.Tests.UI.POM.MyAgendaPage;
 
 internal class WindowsMyAgendaPage : WinAppDriverPage, IWindowsMyAgendaPage
 {
-    [FindsBy(How = How.AccessibilityId, Using = "MyAgendaList")]
-    private IWebElement MyAgendaList { get; set; }
+    private MyAgendaPage _commonLogic;
 
-    public WindowsMyAgendaPage(IWindowsDriver driver) : base(driver)
+    [FindsBy(How = How.AccessibilityId, Using = "MyAgendaList")]
+    public IWebElement MyAgendaList { get; set; }
+
+    public WindowsMyAgendaPage(IWindowsDriver driver): base(driver)
     {
+        _commonLogic = new(this);
     }
 
     public string GetScheduleItems()
     {
-        return MyAgendaList?.Text;
+        return _commonLogic.GetScheduleItems();   
     }
 }
