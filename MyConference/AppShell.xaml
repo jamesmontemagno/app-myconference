@@ -34,6 +34,12 @@
                 ContentTemplate="{DataTemplate pages:SponsorsPage}"
                 Route="Sponsors" />
         </Tab>
+        <Tab Title="Map" Icon="tab_map.png">
+            <ShellContent
+                Title="Map"
+                ContentTemplate="{DataTemplate pages:MapPage}"
+                Route="Map" />
+        </Tab>
     </TabBar>
 
 </Shell>

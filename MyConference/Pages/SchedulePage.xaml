@@ -29,7 +29,15 @@
                         <Border Padding="14" Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}"
                                 StrokeShape="RoundRectangle 10"
                                 StrokeThickness="2"
+                                ToolTipProperties.Text="{Binding Description}"
                                 BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Favorite"/>
+                                    <MenuFlyoutItem Text="Add to Calendar"/>
+                                    <MenuFlyoutItem Text="More Info"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
                             <VerticalStackLayout Spacing="8">
                                 <Label Text="{Binding Title}" FontSize="24"
                                        FontAttributes="Bold"/>
